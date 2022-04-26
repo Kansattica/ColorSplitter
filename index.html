@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Color Splitter</title>
+	<script src="colorsplit.js" defer="defer"></script>
+	<link rel="stylesheet" href="colorsplit.css">
+	<meta property="og:image" content="https://princess.software/android-chrome-384x384.png" />
+	<meta property="og:image:width" content="384" />
+	<meta property="og:image:height" content="384" />
+	<meta property="og:url" content="https://princess.software/colorsplit">
+	<meta property="og:site_name" content="Grace's Stuff">
+	<meta property="og:title" content="Color Splitter">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:description" content="A tool for separating and combining images by their RGB channels.">
+	<meta name="Description" content="A tool for separating and combining images by their RGB channels.">
+</head>
+<body>
+<div class="wholething">
+<div class="input">
+<input type="file" accept="image/*" id="input1"><br>
+<div class="buttongroup">
+<canvas class="inputcanvas" id="canvas1"></canvas>
+<div class="buttonstack">
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1red" name="canvas1color" value="red" checked>Red</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1green" name="canvas1color" value="green">Green</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1blue" name="canvas1color" value="blue">Blue</label>
+</div>
+</div>
+<input type="file" accept="image/*" id="input2"><br>
+<div class="buttongroup">
+<canvas class="inputcanvas" id="canvas2"></canvas>
+<div class="buttonstack">
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2red" name="canvas2color" value="red">Red</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2green" name="canvas2color" value="green" checked>Green</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2blue" name="canvas2color" value="blue">Blue</label>
+</div>
+</div>
+<input type="file" accept="image/*" id="input3"><br>
+<div class="buttongroup">
+<canvas class="inputcanvas" id="canvas3"></canvas>
+<div class="buttonstack">
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3red" name="canvas3color" value="red">Red</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3green" name="canvas3color" value="green">Green</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3blue" name="canvas3color" value="blue" checked>Blue</label>
+</div>
+</div>
+</div>
+<canvas id="output"</canvas>
+</div>
+</body>

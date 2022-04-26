@@ -1,0 +1,27 @@
+canvas {
+	border: 1px solid #000000;
+}
+
+.buttongroup {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.inputcanvas {
+	float: left;
+	display: block;
+}
+
+.buttonstack {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.wholething {
+	display: flex;
+}
+
+#output {
+	margin-left: 1vw;
+}
