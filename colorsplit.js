@@ -59,7 +59,7 @@ function getImageForChannel(inputName, dataWidth, dataHeight)
 	const canvasIdx = parseInt(Array.from(document.getElementsByName(inputName)).filter(function (x) { return x.checked })[0].value) - 1;
 	if (canvasIdx == 3)
 	{
-		return inputCanvases[0].offscreenCanvas.getContext('2d').createImageData(dataWidth, dataHeight);
+		return inputCanvases[0].offscreenCanvas.getContext('2d').createImageData(dataWidth, dataHeight).data;
 	}
 	return inputCanvases[canvasIdx].offscreenCanvas.getContext('2d').getImageData(0, 0, dataWidth, dataHeight).data;
 }
