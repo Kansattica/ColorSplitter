@@ -75,13 +75,14 @@ function updateCanvas(canvasIdx, e)
 
 		thisCanvas.offscreenCanvas.getContext('2d').drawImage(sourceImage, 0, 0, outputscaledWidth, outputCanvas.height);
 		
-		var ctx = thisCanvas.getContext('2d', {alpha: false});
+		var ctx = thisCanvas.getContext('2d');
 		
-		const scalefactor = Math.min(thisCanvas.height / sourceImage.naturalHeight, 1);
+		const targetHeight = thisCanvas.height * .75;	
+		const scalefactor = Math.min(targetHeight / sourceImage.naturalHeight, 1);
 		const scaledWidth = sourceImage.naturalWidth * scalefactor;
-		thisCanvas.width = scaledWidth;		
+		//thisCanvas.width = scaledWidth;		
 		
-		ctx.drawImage(sourceImage, 0, 0, scaledWidth, thisCanvas.height);
+		ctx.drawImage(sourceImage, (thisCanvas.width - scaledWidth)/2, (thisCanvas.height - targetHeight)/2, scaledWidth, targetHeight);
 
 		URL.revokeObjectURL(sourceImage.src);
 		
@@ -95,7 +96,7 @@ for (let i = 0; i < 3; i++)
 	// input1 goes to inputCanvases[0] and so on. 
 	const inpo = document.getElementById("input" + (i+1));
 	inpo.addEventListener('change', updateCanvas.bind(null, i));
-	if (inpo.value !== null)
+	if (inpo.value !== "")
 	{
 		e = {target: inpo};
 		updateCanvas(i, e);
