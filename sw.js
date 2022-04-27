@@ -1,7 +1,7 @@
 // from https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Offline_Service_workers
 
 const cacheName = "colorsplit-v1";
-const filesToCache = ["/colorsplit/", "/colorsplit/colorsplit.js", "/colorsplit/tips.html", "/gallery.css", "/colorsplit/colorsplit.css", "/colorsplit/favicon.ico", "/colorsplit/favicon-32x32.png", "/colorsplit/android-chrome-192x192.png", "/colorsplit/android-chrome-512x512" ];
+const filesToCache = ["/colorsplit/", "/colorsplit/colorsplit.js", "/colorsplit/tips.html", "/gallery.css", "/colorsplit/colorsplit.css", "/colorsplit/favicon.ico", "/colorsplit/favicon-32x32.png", "/colorsplit/android-chrome-192x192.png", "/colorsplit/android-chrome-512x512", "/colorsplit/red.jpg", "/colorsplit/blue.jpg", "/colorsplit/green.jpg" ];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {

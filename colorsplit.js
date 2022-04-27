@@ -19,7 +19,10 @@ function mouseDown(e)
 	canvas.dragInfo.y = e.clientY - canvas.offsetTop;
 }
 
-images = [null, null, null];
+images = [new Image(), new Image(), new Image()];
+images[0].src = "red.jpg";
+images[1].src = "green.jpg";
+images[2].src = "blue.jpg";
 function mouseMove(canvasIdx, e)
 {
 	const canvas = e.target;
@@ -99,6 +102,11 @@ function drawOutput()
 	drawing = false;
 }
 
+for (let i = 0; i < images.length; i++)
+{
+	images[i].onload = function() { updateCanvas(i, images[i]); images[i].loaded = true; };
+}
+
 function updateCanvas(canvasIdx, sourceImage)
 {
 	if (sourceImage === null) { return; }
@@ -145,7 +153,7 @@ for (let i = 0; i < 3; i++)
 	const inpo = document.getElementById("input" + (i+1));
 	inpo.addEventListener('change', function (e) { 
 
-			if (images[i] !== null)
+			if (images[i] !== null && images[i].src.startsWith("blob:"))
 			{
 				URL.revokeObjectURL(images[i].src);
 			}
@@ -159,10 +167,7 @@ for (let i = 0; i < 3; i++)
 				setTimeout(updateCanvas, 0, i, sourceImage);
 			};
 		 }); 
-	if (inpo.value !== "")
-	{
-		updateCanvas(i, images[i]);
-	}
+	updateCanvas(i, images[i]);
 }
 
 for (const element of document.getElementsByTagName("input"))
@@ -171,6 +176,12 @@ for (const element of document.getElementsByTagName("input"))
 	{
 		element.addEventListener('change', drawOutput);
 	}
+}
+
+for (let i = 0; i < images.length; i++)
+{
+	if (images[i].loaded === false)
+		updateCanvas(i, images[i]);
 }
 
 if ('serviceWorker' in navigator) {
