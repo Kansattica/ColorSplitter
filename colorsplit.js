@@ -119,9 +119,10 @@ function updateCanvas(canvasIdx, sourceImage)
 	// it's fine to let the canvas get wider than the screen, the user can scroll to the side
 	thisCanvas.offscreenCanvas.width = Math.max(maxOutputWidth, outputscaledWidth);
 	thisCanvas.offscreenCanvas.height = maxOutputHeight;
+	const offscreenImageHeight = Math.min(outputCanvas.height, sourceImage.naturalHeight);
 
 	const hiddenContext = thisCanvas.offscreenCanvas.getContext('2d');
-	hiddenContext.drawImage(sourceImage, offsetX, offsetY, outputscaledWidth, Math.min(outputCanvas.height, sourceImage.naturalHeight));
+	hiddenContext.drawImage(sourceImage, (thisCanvas.offscreenCanvas.width - outputscaledWidth)/2 + offsetX, (thisCanvas.offscreenCanvas.height - offscreenImageHeight)/2 + offsetY, outputscaledWidth, offscreenImageHeight);
 
 	const ctx = thisCanvas.getContext('2d');
 
