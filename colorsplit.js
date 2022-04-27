@@ -109,11 +109,11 @@ function updateCanvas(canvasIdx, sourceImage)
 	const outputscalefactor = Math.min(maxOutputHeight / sourceImage.naturalHeight, 1);
 	const outputscaledWidth = sourceImage.naturalWidth * outputscalefactor;
 
-	thisCanvas.offscreenCanvas.width = outputscaledWidth;
-	thisCanvas.offscreenCanvas.height = outputCanvas.height;
+	thisCanvas.offscreenCanvas.width = Math.max(maxOutputWidth, outputscaledWidth);
+	thisCanvas.offscreenCanvas.height = maxOutputHeight;
 
 	const hiddenContext = thisCanvas.offscreenCanvas.getContext('2d');
-	hiddenContext.drawImage(sourceImage, offsetX, offsetY, outputscaledWidth, outputCanvas.height);
+	hiddenContext.drawImage(sourceImage, offsetX, offsetY, outputscaledWidth, Math.min(outputCanvas.height, sourceImage.naturalHeight));
 
 	const ctx = thisCanvas.getContext('2d');
 
