@@ -1,0 +1,21 @@
+{
+	"name": "Color Splitter",
+	"short_name": "Color Splitter",
+	"description": "A tool for separating and combining images by their RGB channels.",
+	"start_url": "/colorsplit/",
+	"icons": [
+		{
+			"src": "/colorsplit/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/colorsplit/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#00103d",
+	"background_color": "#00103d",
+	"display": "standalone"
+}

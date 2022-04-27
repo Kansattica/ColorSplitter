@@ -172,3 +172,7 @@ for (const element of document.getElementsByTagName("input"))
 		element.addEventListener('change', drawOutput);
 	}
 }
+
+if ('serviceWorker' in navigator) {
+	    navigator.serviceWorker.register('sw.js');
+};
