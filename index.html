@@ -5,6 +5,7 @@
 	<title>Color Splitter</title>
 	<script src="colorsplit.js" defer="defer"></script>
 	<link rel="stylesheet" href="colorsplit.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta property="og:image" content="https://princess.software/android-chrome-384x384.png" />
 	<meta property="og:image:width" content="384" />
 	<meta property="og:image:height" content="384" />
@@ -20,15 +21,15 @@
 <div class="input">
 <h2>Color Splitter!</h2>
 <p>Upload three pictures and drag 'em around! <a href="tips.html" target="_blank">Click here for tips!</a></p>
-	<input type="file" accept="image/*" id="input1"><br>
+	<label>Picture 1: <input type="file" accept="image/*" id="input1"></label><br>
 	<div class="buttongroup">
 		<canvas class="inputcanvas" id="canvas1"></canvas>
 	</div>
-	<input type="file" accept="image/*" id="input2"><br>
+	<label>Picture 2: <input type="file" accept="image/*" id="input2"></label><br>
 	<div class="buttongroup">
 		<canvas class="inputcanvas" id="canvas2"></canvas>
 	</div>
-	<input type="file" accept="image/*" id="input3"><br>
+	<label>Picture 3: <input type="file" accept="image/*" id="input3"></label><br>
 	<div class="buttongroup">
 		<canvas class="inputcanvas" id="canvas3"></canvas>
 	</div>
@@ -40,7 +41,7 @@
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1red" name="redchannel" value="1" checked>1</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2red" name="redchannel" value="2">2</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3red" name="redchannel" value="3">3</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3red" name="redchannel" value="4">None</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvasnonered" name="redchannel" value="4">None</label>
 </div>
 </div>
 <div class="channelgroup">
@@ -49,7 +50,7 @@
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1green" name="greenchannel" value="1">1</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2green" name="greenchannel" value="2" checked>2</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3green" name="greenchannel" value="3">3</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas4green" name="greenchannel" value="4">None</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvasnonegreen" name="greenchannel" value="4">None</label>
 </div>
 </div>
 <div class="channelgroup">
@@ -58,7 +59,7 @@
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1blue" name="bluechannel" value="1">1</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2blue" name="bluechannel" value="2">2</label><br>
 <label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3blue" name="bluechannel" value="3" checked>3</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3blue" name="bluechannel" value="4">None</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvasnoneblue" name="bluechannel" value="4">None</label>
 </div>
 </div>
 </div>

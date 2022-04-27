@@ -89,7 +89,9 @@ function drawOutput()
 		data[i] = red[i];
 		data[i + 1] = green[i + 1];
 		data[i + 2] = blue[i + 2];
-		data[i + 3] = 255;
+		
+		// transparent if all three are transparent, basically
+		data[i + 3] = red[i+3] + green[i+3] + blue[i+3];
 	}
 
 	ctx.putImageData(imageData, 0, 0);
