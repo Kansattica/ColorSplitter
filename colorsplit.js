@@ -125,7 +125,7 @@ function updateCanvas(canvasIdx, sourceImage)
 
 	const ctx = thisCanvas.getContext('2d');
 
-	const targetHeight = thisCanvas.height * .40;	
+	const targetHeight = Math.min(sourceImage.naturalHeight, thisCanvas.height * .40);	
 	const scalefactor = Math.min(targetHeight / sourceImage.naturalHeight, 1);
 	const scaledWidth = sourceImage.naturalWidth * scalefactor;
 	//thisCanvas.width = scaledWidth;		

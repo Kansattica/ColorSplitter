@@ -53,3 +53,7 @@ p {
 #output {
 	margin-left: 1vw;
 }
+
+ul.tiplist > li {
+	margin: 1em;
+}
