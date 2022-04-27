@@ -7,6 +7,25 @@ canvas {
 	margin-bottom: 10px;
 }
 
+.channelgroup {
+	margin-top: 1vw;
+	margin-left: 2vw;
+	margin-right: 2vw;
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+	align-content: stretch;
+	justify-content: center;
+}
+
+.intermediate {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
 .inputcanvas {
 	float: left;
 	display: block;

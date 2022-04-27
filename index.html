@@ -18,31 +18,42 @@
 <body>
 <div class="wholething">
 <div class="input">
-<input type="file" accept="image/*" id="input1"><br>
-<div class="buttongroup">
-<canvas class="inputcanvas" id="canvas1"></canvas>
+	<input type="file" accept="image/*" id="input1"><br>
+	<div class="buttongroup">
+		<canvas class="inputcanvas" id="canvas1"></canvas>
+	</div>
+	<input type="file" accept="image/*" id="input2"><br>
+	<div class="buttongroup">
+		<canvas class="inputcanvas" id="canvas2"></canvas>
+	</div>
+	<input type="file" accept="image/*" id="input3"><br>
+	<div class="buttongroup">
+		<canvas class="inputcanvas" id="canvas3"></canvas>
+	</div>
+</div>
+<div class="intermediate">
+<div class="channelgroup">
+<span>Red from:</span>
 <div class="buttonstack">
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1red" name="canvas1color" value="red" checked>Red</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1green" name="canvas1color" value="green">Green</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1blue" name="canvas1color" value="blue">Blue</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1red" name="redchannel" value="1" checked>1</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2red" name="redchannel" value="2">2</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3red" name="redchannel" value="3">3</label>
 </div>
 </div>
-<input type="file" accept="image/*" id="input2"><br>
-<div class="buttongroup">
-<canvas class="inputcanvas" id="canvas2"></canvas>
+<div class="channelgroup">
+<span>Green from:</span>
 <div class="buttonstack">
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2red" name="canvas2color" value="red">Red</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2green" name="canvas2color" value="green" checked>Green</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2blue" name="canvas2color" value="blue">Blue</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1green" name="greenchannel" value="1">1</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2green" name="greenchannel" value="2" checked>2</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3green" name="greenchannel" value="3">3</label>
 </div>
 </div>
-<input type="file" accept="image/*" id="input3"><br>
-<div class="buttongroup">
-<canvas class="inputcanvas" id="canvas3"></canvas>
+<div class="channelgroup">
+<span>Blue from:</span>
 <div class="buttonstack">
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3red" name="canvas3color" value="red">Red</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3green" name="canvas3color" value="green">Green</label><br>
-<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3blue" name="canvas3color" value="blue" checked>Blue</label>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas1blue" name="bluechannel" value="1">1</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas2blue" name="bluechannel" value="2">2</label><br>
+<label class="colorbutton"><input type="radio" class="colorbutton" id="canvas3blue" name="bluechannel" value="3" checked>3</label>
 </div>
 </div>
 </div>

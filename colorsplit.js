@@ -11,6 +11,12 @@ outputCanvas.width = screen.width * (2/3);
 
 const inputImages = [null, null, null];
 
+function drawOutput()
+{
+	if (inputImages.some(function(x) { return x === null; }))
+		return;
+}
+
 function updateCanvas(canvasIdx, e)
 {
 	const pickedFile = e.target.files[0];
@@ -27,8 +33,11 @@ function updateCanvas(canvasIdx, e)
 		thisCanvas.width = scaledWidth;		
 		
 		ctx.drawImage(sourceImage, 0, 0, scaledWidth, thisCanvas.height);
+		
+		drawOutput();	
 	}
 }
+
 
 for (let i = 0; i < 3; i++)
 {
@@ -36,3 +45,10 @@ for (let i = 0; i < 3; i++)
 	document.getElementById("input" + (i+1)).addEventListener('change', updateCanvas.bind(null, i));
 }
 
+for (const element of document.getElementsByTagName("input"))
+{
+	if (element.type === "radio")
+	{
+		element.addEventListener('change', drawOutput);
+	}
+}
