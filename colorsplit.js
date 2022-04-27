@@ -3,10 +3,47 @@ const [availableHeight, availableWidth] = function() {
 		return [rootHtml.clientHeight, rootHtml.clientWidth];
 	}();
 
+
+function mouseDown(e)
+{
+	const canvas = e.target;
+	if (canvas.dragInfo === undefined)
+	{
+		canvas.dragInfo = { dragged: true, startx: e.clientX - canvas.offsetLeft, starty: e.clientY - canvas.offsetTop };
+	}
+	else
+	{
+		canvas.dragInfo.dragged = true;
+	}
+	canvas.dragInfo.x = e.clientX - canvas.offsetLeft;
+	canvas.dragInfo.y = e.clientY - canvas.offsetTop;
+}
+
+images = [null, null, null];
+function mouseMove(canvasIdx, e)
+{
+	const canvas = e.target;
+	if (canvas.dragInfo !== undefined && canvas.dragInfo.dragged)
+	{
+		canvas.dragInfo.x = e.clientX - canvas.offsetLeft;
+		canvas.dragInfo.y = e.clientY - canvas.offsetTop;
+
+		setTimeout(updateCanvas, 0, canvasIdx, images[canvasIdx]);
+	}
+}
+
+function mouseUp(e)
+{
+	e.target.dragInfo.dragged = false;
+}
+
 const inputCanvases = [1, 2, 3].map(function(x) {
 		const thisCanvas = document.getElementById("canvas" + x);
 		thisCanvas.height = availableHeight/4;
 		thisCanvas.width = availableWidth/3;
+		thisCanvas.addEventListener("mousedown", mouseDown);
+		thisCanvas.addEventListener("mousemove", mouseMove.bind(null, x - 1));
+		thisCanvas.addEventListener("mouseup", mouseUp);
 		return thisCanvas;
 	});
 
@@ -56,38 +93,40 @@ function drawOutput()
 	drawing = false;
 }
 
-
-function updateCanvas(canvasIdx, e)
+function updateCanvas(canvasIdx, sourceImage)
 {
-	const pickedFile = e.target.files[0];
-	var sourceImage = new Image();
-	sourceImage.src = URL.createObjectURL(pickedFile);
-	
-	sourceImage.onload = function() {
-		const thisCanvas = inputCanvases[canvasIdx];
-		thisCanvas.offscreenCanvas = document.createElement('canvas');
-		
-		const outputscalefactor = Math.min(maxOutputHeight / sourceImage.naturalHeight, 1);
-		const outputscaledWidth = sourceImage.naturalWidth * outputscalefactor;
+	if (sourceImage === null) { return; }
+	const thisCanvas = inputCanvases[canvasIdx];
+	thisCanvas.offscreenCanvas = document.createElement('canvas');
 
-		thisCanvas.offscreenCanvas.width = outputscaledWidth;
-		thisCanvas.offscreenCanvas.height = outputCanvas.height;
-
-		thisCanvas.offscreenCanvas.getContext('2d').drawImage(sourceImage, 0, 0, outputscaledWidth, outputCanvas.height);
-		
-		var ctx = thisCanvas.getContext('2d');
-		
-		const targetHeight = thisCanvas.height * .75;	
-		const scalefactor = Math.min(targetHeight / sourceImage.naturalHeight, 1);
-		const scaledWidth = sourceImage.naturalWidth * scalefactor;
-		//thisCanvas.width = scaledWidth;		
-		
-		ctx.drawImage(sourceImage, (thisCanvas.width - scaledWidth)/2, (thisCanvas.height - targetHeight)/2, scaledWidth, targetHeight);
-
-		URL.revokeObjectURL(sourceImage.src);
-		
-		setTimeout(drawOutput);
+	let offsetX = 0, offsetY = 0;
+	if (thisCanvas.dragInfo)
+	{
+		offsetX = thisCanvas.dragInfo.x - thisCanvas.dragInfo.startx;
+		offsetY = thisCanvas.dragInfo.y - thisCanvas.dragInfo.starty;
 	}
+
+	const outputscalefactor = Math.min(maxOutputHeight / sourceImage.naturalHeight, 1);
+	const outputscaledWidth = sourceImage.naturalWidth * outputscalefactor;
+
+	thisCanvas.offscreenCanvas.width = outputscaledWidth;
+	thisCanvas.offscreenCanvas.height = outputCanvas.height;
+
+	const hiddenContext = thisCanvas.offscreenCanvas.getContext('2d');
+	hiddenContext.drawImage(sourceImage, offsetX, offsetY, outputscaledWidth, outputCanvas.height);
+
+	const ctx = thisCanvas.getContext('2d');
+
+	const targetHeight = thisCanvas.height * .40;	
+	const scalefactor = Math.min(targetHeight / sourceImage.naturalHeight, 1);
+	const scaledWidth = sourceImage.naturalWidth * scalefactor;
+	//thisCanvas.width = scaledWidth;		
+
+	ctx.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
+
+	ctx.drawImage(sourceImage, (thisCanvas.width - scaledWidth)/2 + offsetX, (thisCanvas.height - targetHeight)/2 + offsetY, scaledWidth, targetHeight);
+
+	setTimeout(drawOutput);
 }
 
 
@@ -95,11 +134,25 @@ for (let i = 0; i < 3; i++)
 {
 	// input1 goes to inputCanvases[0] and so on. 
 	const inpo = document.getElementById("input" + (i+1));
-	inpo.addEventListener('change', updateCanvas.bind(null, i));
+	inpo.addEventListener('change', function (e) { 
+
+			if (images[i] !== null)
+			{
+				URL.revokeObjectURL(images[i].src);
+			}
+			const pickedFile = e.target.files[0];
+			if (pickedFile === undefined)
+				return;
+			const sourceImage = new Image();
+			sourceImage.src = URL.createObjectURL(pickedFile);
+			images[i] = sourceImage;
+			sourceImage.onload = function() {
+				setTimeout(updateCanvas, 0, i, sourceImage);
+			};
+		 }); 
 	if (inpo.value !== "")
 	{
-		e = {target: inpo};
-		updateCanvas(i, e);
+		updateCanvas(i, images[i]);
 	}
 }
 
