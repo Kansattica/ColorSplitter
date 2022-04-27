@@ -57,6 +57,10 @@ function getImageForChannel(inputName, dataWidth, dataHeight)
 {
 	// subtract 1 because a selection of 1 corresponds to inputCanvases[0]
 	const canvasIdx = parseInt(Array.from(document.getElementsByName(inputName)).filter(function (x) { return x.checked })[0].value) - 1;
+	if (canvasIdx == 3)
+	{
+		return inputCanvases[0].offscreenCanvas.getContext('2d').createImageData(dataWidth, dataHeight);
+	}
 	return inputCanvases[canvasIdx].offscreenCanvas.getContext('2d').getImageData(0, 0, dataWidth, dataHeight).data;
 }
 
@@ -109,6 +113,8 @@ function updateCanvas(canvasIdx, sourceImage)
 	const outputscalefactor = Math.min(maxOutputHeight / sourceImage.naturalHeight, 1);
 	const outputscaledWidth = sourceImage.naturalWidth * outputscalefactor;
 
+	// i know it's called maxOutputWidth, but it's actually just the width the canvas starts out at
+	// it's fine to let the canvas get wider than the screen, the user can scroll to the side
 	thisCanvas.offscreenCanvas.width = Math.max(maxOutputWidth, outputscaledWidth);
 	thisCanvas.offscreenCanvas.height = maxOutputHeight;
 
