@@ -149,7 +149,7 @@ function updateCanvas(canvasIdx, sourceImage)
 	const offscreenImageHeight = Math.min(outputCanvas.height, sourceImage.naturalHeight);
 
 	const hiddenContext = thisCanvas.offscreenCanvas.getContext('2d');
-	hiddenContext.drawImage(sourceImage, (thisCanvas.offscreenCanvas.width - outputscaledWidth)/2 + offsetX, (thisCanvas.offscreenCanvas.height - offscreenImageHeight)/2 + offsetY, outputscaledWidth, offscreenImageHeight);
+	hiddenContext.drawImage(sourceImage, Math.floor((thisCanvas.offscreenCanvas.width - outputscaledWidth)/2 + offsetX), Math.floor((thisCanvas.offscreenCanvas.height - offscreenImageHeight)/2 + offsetY), outputscaledWidth, offscreenImageHeight);
 
 	const ctx = thisCanvas.getContext('2d');
 
@@ -160,7 +160,7 @@ function updateCanvas(canvasIdx, sourceImage)
 
 	ctx.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
 
-	ctx.drawImage(sourceImage, (thisCanvas.width - scaledWidth)/2 + offsetX, (thisCanvas.height - targetHeight)/2 + offsetY, scaledWidth, targetHeight);
+	ctx.drawImage(sourceImage, Math.floor((thisCanvas.width - scaledWidth)/2 + offsetX), Math.floor((thisCanvas.height - targetHeight)/2 + offsetY), scaledWidth, targetHeight);
 
 	setTimeout(drawOutput);
 }
